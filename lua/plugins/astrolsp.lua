@@ -41,11 +41,18 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
+      "rust-analyzer"
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      pylsp = {
+        pycodestyle = {
+          ignore = { "E501" },
+          maxLineLength = 200,
+        },
+      },
     },
     -- customize how language servers are attached
     handlers = {

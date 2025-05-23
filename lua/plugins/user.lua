@@ -82,6 +82,7 @@ return {
     end,
   },
   { "morhetz/gruvbox" },
+  { "andreasvc/vim-256noir" },
   { "tpope/vim-surround", lazy = false },
   { "tpope/vim-fugitive", lazy = false },
   {
@@ -126,8 +127,31 @@ return {
     --   astronvim.add_user_cmp_source "copilot"
     -- end,
   },
-  { "gptlang/CopilotChat.nvim",
-    after = { "copilot.lua" },
+  -- { "gptlang/CopilotChat.nvim",
+  --   after = { "copilot.lua" },
+  --   lazy = false,
+  -- },
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
     lazy = false,
+    config = function()
+      require("codecompanion").setup({
+        strategies = {
+          chat = {
+            adapter = "copilot",
+          },
+          inline = {
+            adapter = "copilot",
+          },
+          agent = {
+            adapter = "copilot",
+          },
+        },
+      })
+    end,
   },
 }
